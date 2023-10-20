@@ -16,7 +16,7 @@ const computeProductTotalPrice = (product: Product): ProductWithTotalPrice => {
 
   return {
     ...product,
-    totalPrice: product.basePrice - totalDiscount
+    totalPrice: Number(product.basePrice) - totalDiscount
   }
 }
 

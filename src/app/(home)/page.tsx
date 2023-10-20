@@ -27,8 +27,18 @@ export default async function Home() {
       <Categories />
 
       <div className="mt-8">
+        <p className='uppercase font-bold mb-3'>Ofertas</p>
         <ProductList products={deals} />
       </div>
+
+      <AspectRatio ratio={16 / 9} className="">
+        <Image
+          src="/banner-home-02.png"
+          fill
+          className="rounded-md object-contain"
+          alt="Até 55% de desconto em mouses!"
+        />
+      </AspectRatio>
     </div>
   )
 }
