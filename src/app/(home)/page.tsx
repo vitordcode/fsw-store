@@ -23,22 +23,37 @@ export default async function Home() {
     }
   })
 
+  const mouses = await prismaClient.product.findMany({
+    where: {
+      category: {
+        slug: "mouses",
+      }
+    }
+  })
+
   return (
-    <div className="px-6">
+    <div className="px-6 flex flex-col gap-8">
       <BannerPromo src="/banner-home-01.png" alt='Até 55% de desconto esse mês!' />
 
       <Categories />
 
-      <div className="mt-8">
+      <div>
         <SectionTitle>Ofertas</SectionTitle>
         <ProductList products={deals} />
       </div>
 
       <BannerPromo src="/banner-home-02.png" alt='Até 55% de desconto em mouses!' />
 
-      <div className="mt-8">
+      <div>
         <SectionTitle>Teclados</SectionTitle>
         <ProductList products={keyboards} />
+      </div>
+
+      <BannerPromo src="/banner-home-03.png" alt='Até 55% de desconto em mouses!' />
+
+      <div>
+        <SectionTitle>Mouses</SectionTitle>
+        <ProductList products={mouses} />
       </div>
     </div>
   )
