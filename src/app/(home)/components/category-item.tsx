@@ -1,6 +1,7 @@
 import { Badge } from '@/components/ui/badge'
 import { CATEGORY_ICON } from '@/constants/category-icon'
 import { Category } from '@prisma/client'
+import Link from 'next/link'
 
 interface CategoryItemProps {
   category: Category
@@ -9,7 +10,8 @@ interface CategoryItemProps {
 const CategoryItem = ({ category }: CategoryItemProps) => {
 
   return (
-    <Badge
+    <Link href={`/category/${category.slug}`}>
+      <Badge
       variant="outline"
       className="flex p-4 gap-4 rounded-xl justify-center"
     >
@@ -18,6 +20,7 @@ const CategoryItem = ({ category }: CategoryItemProps) => {
         {category.name}
       </span>
     </Badge>
+    </Link>
   )
 }
 
