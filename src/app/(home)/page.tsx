@@ -3,6 +3,8 @@ import Image from 'next/image'
 import { Categories } from './components/categories'
 import { prismaClient } from '@/lib/prisma'
 import ProductList from './components/product-list'
+import SectionTitle from './components/section-title'
+import BannerPromo from './components/banner-promo'
 
 export default async function Home() {
   const deals = await prismaClient.product.findMany({
@@ -13,32 +15,31 @@ export default async function Home() {
     },
   })
 
+  const keyboards = await prismaClient.product.findMany({
+    where: {
+      category: {
+        slug: "keyboards",
+      }
+    }
+  })
+
   return (
     <div className="px-6">
-      <AspectRatio ratio={16 / 9} className="">
-        <Image
-          src="/banner-home-01.png"
-          fill
-          className="rounded-md object-contain"
-          alt="Até 55% de desconto esse mês!"
-        />
-      </AspectRatio>
+      <BannerPromo src="/banner-home-01.png" alt='Até 55% de desconto esse mês!' />
 
       <Categories />
 
       <div className="mt-8">
-        <p className='uppercase font-bold mb-3'>Ofertas</p>
+        <SectionTitle>Ofertas</SectionTitle>
         <ProductList products={deals} />
       </div>
 
-      <AspectRatio ratio={16 / 9} className="">
-        <Image
-          src="/banner-home-02.png"
-          fill
-          className="rounded-md object-contain"
-          alt="Até 55% de desconto em mouses!"
-        />
-      </AspectRatio>
+      <BannerPromo src="/banner-home-02.png" alt='Até 55% de desconto em mouses!' />
+
+      <div className="mt-8">
+        <SectionTitle>Teclados</SectionTitle>
+        <ProductList products={keyboards} />
+      </div>
     </div>
   )
 }
