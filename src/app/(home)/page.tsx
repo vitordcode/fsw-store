@@ -1,10 +1,20 @@
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import Image from 'next/image'
 import { Categories } from './components/categories'
+import { prismaClient } from '@/lib/prisma'
+import ProductList from './components/product-list'
 
-export default function Home() {
+export default async function Home() {
+  const deals = await prismaClient.product.findMany({
+    where: {
+      discountPercent: {
+        gt: 0,
+      },
+    },
+  })
+
   return (
-    <div className='px-6'>
+    <div className="px-6">
       <AspectRatio ratio={16 / 9} className="">
         <Image
           src="/banner-home-01.png"
@@ -15,6 +25,10 @@ export default function Home() {
       </AspectRatio>
 
       <Categories />
+
+      <div className="mt-8">
+        <ProductList products={deals} />
+      </div>
     </div>
   )
 }
