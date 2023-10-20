@@ -11,7 +11,7 @@ interface ProductItemProps {
 const ProductItem = ({ product }: ProductItemProps) => {
   return (
     <div className="flex flex-col max-w-[156px]">
-      <div className="bg-accent rounded-lg w-[156px] h-[170px] relative flex justify-center items-center">
+      <div className="bg-accent rounded-lg w-[180px] h-[170px] relative flex justify-center items-center">
         <AspectRatio ratio={16 / 9} className='flex justify-center items-center'>
           <Image
             src={product.imageUrls[0]}
